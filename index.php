@@ -270,10 +270,10 @@
                                 <br> Comunícate con nosotros.</h3>
                         </div>
                         <div class="col-md-4">
-                            <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Ingresa tu correo electrónico">
+                            <input type="email" id="email" class="form-control form-control-lg" placeholder="Ingresa tu correo electrónico">
                         </div>
                         <div class="col-md-4">
-                            <input id="btn-email" onclick="guardar()" value="Enviar" class="btn btn-info btn-lg btn-block">
+                            <button onclick="myFunction()" class="btn btn-info btn-lg btn-block">Enviar</button>
                         </div>
                     </div>
                 </form>
@@ -322,13 +322,13 @@
                                                 1.¿Conoces la educación a distancia?</legend>
                                             <div class="col-sm-4">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia1" value="Si" checked>
+                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia" value="Si" checked>
                                                     <label class="form-check-label" for="gridRadios1">
                                       Sí
                                     </label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia2" value="No">
+                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia" value="No">
                                                     <label class="form-check-label" for="gridRadios2">
                                       No
                                     </label>
@@ -341,13 +341,13 @@
                                         <legend class="col-form-label col-sm-8 ">2.¿Estuvieras dispuest@ a aprender en línea?</legend>
                                         <div class="col-sm-4">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea1" value="Si" checked>
+                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea" value="Si" checked>
                                                 <label class="form-check-label" for="gridRadios">
                                       Sí
                                     </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea2" value="No">
+                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea" value="No">
                                                 <label class="form-check-label" for="gridRadios">
                                       No
                                     </label>
@@ -359,13 +359,13 @@
                                 <div class="row">
                                     <label for="inputTextCurso" class=" col-sm-8 col-form-label ">3.¿Qué tipos de cursos te interesarían?</label>
                                     <div class="col-sm-4 ">
-                                        <input type="text" name="cursos_interes" id="cursos_interes" class="form-control">
+                                        <input type="text" id="cursos_interes" class="form-control">
                                     </div>
                                 </div>
                                 <br>
                                 <div class=" form-group row ">
                                     <div class="col-sm-12 ">
-                                        <input type="submit" id="btnGuardarEncuesta" class="btn btn-info btn-lg btn-block" value="Envía tu respuesta!">
+                                        <button onclick="guardar()" class="btn btn-info btn-lg btn-block">Envía tu respuesta!</button>
                                     </div>
                                 </div>
                             </form>
