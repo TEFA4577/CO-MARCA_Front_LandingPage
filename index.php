@@ -10,10 +10,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--CUSTOM CSS-->
     <link rel="stylesheet" href="css/main.css">
+
+    <!--Firestore-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="app.js"></script>
 </head>
 
 <body>
-    
+
     <!--NAVIGATOR-->
     <!--border-->
     <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white">
@@ -30,7 +35,7 @@
                         <a class="nav-link  js-scroll-trigger col" align="center" href="#sec1">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger col" align="center" href="#sec2" >¿A quienes <br> nos dirigimos?</a>
+                        <a class="nav-link js-scroll-trigger col" align="center" href="#sec2">¿A quienes <br> nos dirigimos?</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger col" align="center" href="#sec3">Beneficios</a>
@@ -73,8 +78,8 @@
     </header>
     <!--END MAIN HEADER-->
 
-<!--WHO ARE US?-->
-<section>
+    <!--WHO ARE US?-->
+    <section>
         <br id="subsec1">
         <div class="container">
             <div class="row">
@@ -217,14 +222,14 @@
     <!--END BENEFITS-->
 
     <!--UPDATE FORM-->
-        <?php
-            require "conexion.php";
+    <?php
+            /*require "conexion.php";
 
             if(isset($_POST['submit'])) {
 
                 $new_email = array(
                     "email" => $_POST['email']
-                );
+                );//
 
                 $sql = "INSERT INTO lms_email_informaciones (id_inf, email) VALUES (NULL,:email)";
 
@@ -249,37 +254,37 @@
                 }catch(PDOException $error){ 
                     echo $error->getMessage();
                 }
-            }
+            }*/
         ?>
 
-    <!--END UPDATE FORM-->
+        <!--END UPDATE FORM-->
 
-    <!--CONTACTS-->
-    <section class="bg-dark text-white py-5">
-        <br>
-        <div class="container">
-            <form method="POST">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h3 class="lead text-center">¿Necesitas más información?
-                            <br> Comunícate con nosotros.</h3>
+        <!--CONTACTS-->
+        <section class="bg-dark text-white py-5">
+            <br>
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="lead text-center">¿Necesitas más información?
+                                <br> Comunícate con nosotros.</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Ingresa tu correo electrónico">
+                        </div>
+                        <div class="col-md-4">
+                            <input id="btn-email" onclick="guardar()" value="Enviar" class="btn btn-info btn-lg btn-block">
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="Ingresa tu correo electrónico">
-                    </div>
-                    <div class="col-md-4">
-                        <input type="submit" name="submit" value="Enviar" class="btn btn-info btn-lg btn-block">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <br>
-    </section>
-    <!--END CONTACTS-->
+                </form>
+            </div>
+            <br>
+        </section>
+        <!--END CONTACTS-->
 
-    <!--UPDATE FORM-->
+        <!--UPDATE FORM-->
         <?php
-        require "conexion.php";
+        /*require "conexion.php";
 
             if(isset($_POST['submit2'])){
 
@@ -298,102 +303,104 @@
                 }catch(PDOException $error){    
                     echo $error->getMessage();
                 }
-            }
+            }*/
         ?>
 
-    <!--END UPDATE FORM-->
+            <!--END UPDATE FORM-->
 
-    <!--FORMULARIO-->
-    <section class="bg-light py-5">
-        <div class="container">
-            <div class="card">
-                <h3 class="card-header text-center">Realiza esta pequeña encuesta</h3>
-                <div class="card-body justify-content-center align-self-center">
-                    <form method="POST">
-                    <fieldset class="form-group">
-                            <div class="row">
-                                <legend class="col-form-label col-sm-8">
-                                    1.¿Conoces la educación a distancia?</legend>
-                                <div class="col-sm-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia" value="Si" checked>
-                                        <label class="form-check-label" for="gridRadios1">
+            <!--FORMULARIO-->
+            <section class="bg-light py-5">
+                <div class="container">
+                    <div class="card">
+                        <h3 class="card-header text-center">Realiza esta pequeña encuesta</h3>
+                        <div class="card-body justify-content-center align-self-center">
+                            <form>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                            <!-- ID que recibimos de firebase-->
+                                            <legend class="col-form-label col-sm-8">
+                                                1.¿Conoces la educación a distancia?</legend>
+                                            <div class="col-sm-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia1" value="Si" checked>
+                                                    <label class="form-check-label" for="gridRadios1">
                                       Sí
                                     </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia" value="No">
-                                        <label class="form-check-label" for="gridRadios2">
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="educacion_distancia" id="educacion_distancia2" value="No">
+                                                    <label class="form-check-label" for="gridRadios2">
                                       No
                                     </label>
+                                                </div>
+                                            </div>
                                     </div>
-                                </div>
-                            </div>
-                    </fieldset>
-                    <fieldset class="form-group">
-                            <div class="row">
-                                <legend class="col-form-label col-sm-8 ">2.¿Estuvieras dispuest@ a aprender en línea?</legend>
-                                <div class="col-sm-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea" value="Si" checked>
-                                        <label class="form-check-label" for="gridRadios">
+                                </fieldset>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-8 ">2.¿Estuvieras dispuest@ a aprender en línea?</legend>
+                                        <div class="col-sm-4">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea1" value="Si" checked>
+                                                <label class="form-check-label" for="gridRadios">
                                       Sí
                                     </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea" value="No">
-                                        <label class="form-check-label" for="gridRadios">
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="aprender_linea" id="aprender_linea2" value="No">
+                                                <label class="form-check-label" for="gridRadios">
                                       No
                                     </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="row">
+                                    <label for="inputTextCurso" class=" col-sm-8 col-form-label ">3.¿Qué tipos de cursos te interesarían?</label>
+                                    <div class="col-sm-4 ">
+                                        <input type="text" name="cursos_interes" id="cursos_interes" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-                     </fieldset>
-
-                        <div class="row">
-                            <label for="inputTextCurso" class=" col-sm-8 col-form-label ">3.¿Qué tipos de cursos te interesarían?</label>
-                            <div class="col-sm-4 ">
-                                <input type="text" name="cursos_interes" id="cursos_interes" class="form-control">
-                            </div>
+                                <br>
+                                <div class=" form-group row ">
+                                    <div class="col-sm-12 ">
+                                        <input type="submit" id="btnGuardarEncuesta" class="btn btn-info btn-lg btn-block" value="Envía tu respuesta!">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <br>
-                        <div class=" form-group row ">
-                            <div class="col-sm-12 ">
-                                <input type="submit" name="submit2" class="btn btn-info btn-lg btn-block" value="Envía tu respuesta!">
-                            </div>
+                    </div>
+                </div>
+            </section>
+            <!--END FORMULARIO-->
+
+            <!--FOOTER AND SOCIAL MEDIA-->
+            <footer class="bg-dark ">
+                <div class="container py-5 text-white text-center ">
+                    <div class=" row ">
+                        <div class="col-md-4"><br></div>
+                        <div class="col-md-4"><img src="img/Iconos/facebook.png " width="40">
+                            <img src="img/Iconos/twitter.png " width="40">
+                            <img src="img/Iconos/instagram.jpg " width="40"></i>
                         </div>
-                    </form>
+                        <div class="col-md-4 "><br></div>
+                    </div><br><br>
+                    <p class="lead ">De emprededores para emprendedores...
+                        <br> Avenida Montenegro, edificio Emporio Nro.1017
+                        <br>Teléfono: (591) 71520591
+                        <br>(591) 77582306
+                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
-    <!--END FORMULARIO-->
+            </footer>
+            <!--END FOOTER AND SOCIAL MEDIA-->
 
-   <!--FOOTER AND SOCIAL MEDIA-->
-   <footer class="bg-dark ">
-        <div class="container py-5 text-white text-center ">
-            <div class=" row ">
-                <div class="col-md-4"><br></div>
-                <div class="col-md-4"><img src="img/Iconos/facebook.png " width="40">
-                    <img src="img/Iconos/twitter.png " width="40">
-                    <img src="img/Iconos/instagram.jpg " width="40"></i>
-                </div>
-                <div class="col-md-4 "><br></div>
-            </div><br><br>
-            <p class="lead ">De emprededores para emprendedores...
-                <br> Avenida Montenegro, edificio Emporio Nro.1017
-                <br>Teléfono: (591) 71520591
-                <br>(591) 77582306
-            </p>
-        </div>
-    </footer>
-    <!--END FOOTER AND SOCIAL MEDIA-->
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js " integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV " crossorigin="anonymous "></script>
 
-    <!-- Optional JavaScript -->
-                            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js " integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj " crossorigin="anonymous "></script>
-                            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js " integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN " crossorigin="anonymous "></script>
-                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js " integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV " crossorigin="anonymous "></script>
 
 </body>
 
